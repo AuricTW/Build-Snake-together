@@ -72,16 +72,15 @@ def _draw_walls(screen, vertical_wall, horizontal_wall) -> None:
         screen.blit(horizontal_wall, (x, HEIGHT - WALL_THICKNESS))
 
 
-def choose_food(body: list[Cell]) -> Cell: # 用來選擇食物位置
+def choose_food(body: list[Cell]) -> Cell: # 用來隨機食物位置
     """Choose a random free cell inside the visible wall boundary."""
-    free_cells = [
-        (x, y)
-        for y in range(CELL, HEIGHT - CELL, CELL)
-        for x in range(CELL, WIDTH - CELL, CELL)
-        if (x, y) not in body
-    ]
-    if not free_cells:
-        raise RuntimeError("board is full")
+    free_cells = [] # 存儲可用的格子
+
+    for y in range(CELL, HEIGHT - CELL, CELL): 
+        for x in range(CELL, WIDTH - CELL, CELL):
+            if (x, y) not in body:
+                free_cells.append((x, y)) 
+
     return RNG.choice(free_cells) 
 
 
