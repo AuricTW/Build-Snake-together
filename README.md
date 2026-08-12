@@ -3,7 +3,7 @@
 
 
 ## 遊玩指令
-cd D:\Lab\lab03-snake-trio  
+cd D:\Lab\lab03-snake-trio  (自己改路徑)
 & .\.venv\Scripts\python.exe -m snake_trio
 
 ## What are you building?
