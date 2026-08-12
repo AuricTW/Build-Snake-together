@@ -1,6 +1,7 @@
 # Lab 03 - Snake Game Trio Studio
 > https://ncku-python-game-2026-dyou.web.app/materials/handouts/Lab03_Snake_Trio_Studio_Guide.html#step-06
 
+
 ## What are you building?
 
 Your trio will turn four small Python contracts into a playable grid-based Snake Game. The Pygame window, keyboard adapter, drawing code, restart key, and deterministic food placement are supplied. Your job is deliberately smaller:

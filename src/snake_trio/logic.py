@@ -10,7 +10,6 @@ from __future__ import annotations
 Cell = tuple[int, int]
 Direction = tuple[int, int]
 
-
 def next_head(head: Cell, direction: Direction, cell_size: int) -> Cell: # 計算下一個蛇頭位置
     """Return the next head cell.
 
@@ -26,6 +25,7 @@ def next_head(head: Cell, direction: Direction, cell_size: int) -> Cell: # 計�
     raise NotImplementedError("TODO 1: compute the next head")
 
 
+
 def ate_food(head: Cell, food: Cell) -> bool:
     """Return True exactly when the snake head occupies the food cell.
 
@@ -33,7 +33,7 @@ def ate_food(head: Cell, food: Cell) -> bool:
     """
     # TODO 2: replace this line with one boolean return statement.
     raise NotImplementedError("TODO 2: compare head and food")
-    
+
 
 
 def hit_wall(head: Cell, width: int, height: int, cell_size: int) -> bool:
