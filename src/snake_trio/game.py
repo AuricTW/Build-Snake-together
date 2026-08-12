@@ -16,15 +16,15 @@ from .logic import Cell, Direction, advance_body, ate_food, hit_wall, next_head
 WIDTH = 640
 HEIGHT = 480
 CELL = 20
-STEP_MS = 130
-START_BODY: list[Cell] = [(200, 200), (180, 200), (160, 200)]
-START_DIRECTION: Direction = (1, 0)
+STEP_MS = 100
+START_LENGTH = 3
+DIRECTIONS: tuple[Direction, ...] = ((-1, 0), (1, 0), (0, -1), (0, 1))
 ASSET_DIR = Path(__file__).with_name("assets")
 APPLE_HEIGHT = CELL + CELL // 2
 WALL_LENGTH = CELL * 20
 WALL_THICKNESS = max(4, CELL // 4)
 RNG = random.Random()
-
+# 幫我把分支合併到/main
 
 def _load_sprite(pygame, name: str, size: tuple[int, int]):
     """Load, clean, and scale one blue-on-light-background sprite."""
@@ -93,9 +93,33 @@ class GameState:
     game_over: bool = False
 
 
+def choose_start() -> tuple[list[Cell], Direction]:
+    """Choose a random direction and a matching three-segment body."""
+    direction = RNG.choice(DIRECTIONS)
+    direction_x, direction_y = direction
+    possible_bodies: list[list[Cell]] = []
+
+    for head_y in range(CELL, HEIGHT - CELL, CELL):
+        for head_x in range(CELL, WIDTH - CELL, CELL):
+            body = [
+                (
+                    head_x - direction_x * CELL * index,
+                    head_y - direction_y * CELL * index,
+                )
+                for index in range(START_LENGTH)
+            ]
+            if all(
+                CELL <= x < WIDTH - CELL and CELL <= y < HEIGHT - CELL
+                for x, y in body
+            ):
+                possible_bodies.append(body)
+
+    return RNG.choice(possible_bodies), direction
+
+
 def new_game() -> GameState:
-    body = list(START_BODY)
-    return GameState(body=body, direction=START_DIRECTION, food=choose_food(body))
+    body, direction = choose_start()
+    return GameState(body=body, direction=direction, food=choose_food(body))
 
 
 def step(state: GameState) -> None:

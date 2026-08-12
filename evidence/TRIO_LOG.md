@@ -22,8 +22,8 @@ Rotate roles after each completed TODO.
 ## Explain-back
 
 1. Which function was easiest to test, and why?
+我們團隊認為hit_wall是最容易測試的功能
 2. Which failing test gave the clearest clue?
-3. What did your trio ask AI at L1, and what decision remained human-owned?
 
 ===================================================== FAILURES ======================================================
 _______________________________________ test_next_head_moves_exactly_one_cell _______________________________________
@@ -125,3 +125,7 @@ FAILED tests_public/test_snake_contract.py::test_next_head_moves_exactly_one_cel
 FAILED tests_public/test_snake_contract.py::test_ate_food_uses_exact_cell_equality - NotImplementedError: TODO 2: compare head and food
 FAILED tests_public/test_snake_contract.py::test_hit_wall_checks_all_four_edges - NotImplementedError: TODO 3: check four wall boundaries
 FAILED tests_public/test_snake_contract.py::test_advance_body_returns_a_new_list_and_obeys_growth - NotImplementedError: TODO 4: create the next body
+
+
+3. What did your trio ask AI at L1, and what decision remained human-owned?
+請給我們一個 Arrange-Act-Assert 的測試架構範例，用來說明如何測試『串列長度是否增加』？
