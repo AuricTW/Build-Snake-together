@@ -1,4 +1,5 @@
 # Lab 03 - Snake Game Trio Studio
+> https://ncku-python-game-2026-dyou.web.app/materials/handouts/Lab03_Snake_Trio_Studio_Guide.html#step-06
 
 ## What are you building?
 
