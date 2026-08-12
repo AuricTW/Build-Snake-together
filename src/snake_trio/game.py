@@ -7,6 +7,7 @@ It translates keys, draws the board, and calls the four functions in logic.py.
 from __future__ import annotations
 
 import argparse
+import random
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -22,6 +23,7 @@ ASSET_DIR = Path(__file__).with_name("assets")
 APPLE_HEIGHT = CELL + CELL // 2
 WALL_LENGTH = CELL * 20
 WALL_THICKNESS = max(4, CELL // 4)
+RNG = random.Random()
 
 
 def _load_sprite(pygame, name: str, size: tuple[int, int]):
@@ -71,12 +73,16 @@ def _draw_walls(screen, vertical_wall, horizontal_wall) -> None:
 
 
 def choose_food(body: list[Cell]) -> Cell: # 用來選擇食物位置
-    """Choose the first free cell deterministically for reproducible play."""
-    for y in range(0, HEIGHT, CELL):
-        for x in range(0, WIDTH, CELL):
-            if (x, y) not in body:
-                return (x, y)
-    raise RuntimeError("board is full")
+    """Choose a random free cell inside the visible wall boundary."""
+    free_cells = [
+        (x, y)
+        for y in range(CELL, HEIGHT - CELL, CELL)
+        for x in range(CELL, WIDTH - CELL, CELL)
+        if (x, y) not in body
+    ]
+    if not free_cells:
+        raise RuntimeError("board is full")
+    return RNG.choice(free_cells) 
 
 
 @dataclass
@@ -195,6 +201,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--check", action="store_true", help="run one deterministic logic step")
     args = parser.parse_args(argv)
     if args.check:
+        RNG.seed(0)
         state = new_game()
         step(state)
         print({"head": state.body[0], "length": len(state.body), "score": state.score})
