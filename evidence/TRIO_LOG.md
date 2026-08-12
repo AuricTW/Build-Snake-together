@@ -2,9 +2,9 @@
 
 ## Members and first roles
 
-- Driver:
-- Navigator:
-- Tester / Recorder:
+- Driver:李韋宏
+- Navigator:周芯妤
+- Tester / Recorder:洪子由
 
 Rotate roles after each completed TODO.
 
