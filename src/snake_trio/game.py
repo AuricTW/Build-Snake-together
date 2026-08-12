@@ -19,7 +19,7 @@ START_BODY: list[Cell] = [(200, 200), (180, 200), (160, 200)]
 START_DIRECTION: Direction = (1, 0)
 
 
-def choose_food(body: list[Cell]) -> Cell:
+def choose_food(body: list[Cell]) -> Cell: # 用來選擇食物位置
     """Choose the first free cell deterministically for reproducible play."""
     for y in range(0, HEIGHT, CELL):
         for x in range(0, WIDTH, CELL):

@@ -11,7 +11,7 @@ Cell = tuple[int, int]
 Direction = tuple[int, int]
 
 
-def next_head(head: Cell, direction: Direction, cell_size: int) -> Cell:
+def next_head(head: Cell, direction: Direction, cell_size: int) -> Cell: # 計算下一個蛇頭位置
     """Return the next head cell.
 
     Interface:

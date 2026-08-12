@@ -1,6 +1,4 @@
 # Lab 03 - Snake Game Trio Studio
->
-
 
 ## What are you building?
 
